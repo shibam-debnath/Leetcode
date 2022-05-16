@@ -60,7 +60,7 @@ int main()
 {
 
     vector<int> nums = {2, 0, 1};
-    sortColors(nums);
+    // sortColors(nums);
 
     for (auto &x : nums)
     {

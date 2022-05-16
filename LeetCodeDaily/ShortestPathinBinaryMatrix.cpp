@@ -1,104 +1,58 @@
+//Shibam Debnath
+//May,2022
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
-queue<pair<int, int>> q;
-
-// vector<vector<int>> dir;
-
-int calc(int row, int col, vector<vector<int>> &grid)
-{
-    while (!q.empty())
-    {
-
-        auto x = q.front();
-        int row = x.first;
-        int col = x.second;
-
-        if (row == grid.size() && col == grid[0].size())
-        {
-            return grid[grid.size() - 1][grid[0].size() - 1];
-        }
-
-        if (grid[row + 1][col + 1] == 0 && row >= 0 && row < grid.size() && col >= 0 && col < grid[0].size())
-        {
-            cout << "safe" << endl;
-            q.push({row + 1, col + 1});
-            grid[row + 1][col + 1] = 1 + grid[row][col];
-        }
-        else if (grid[row + 1][col] == 0 && row >= 0 && row < grid.size() && col >= 0 && col < grid[0].size())
-        {
-            cout << "safe1" << endl;
-            grid[row + 1][col] = 1 + grid[row][col];
-            row++;
-            q.push({row, col});
-            cout << q.front().first << endl;
-        }
-        else if (grid[row][col - 1] == 0 && row >= 0 && row < grid.size() && col >= 0 && col < grid[0].size())
-        {
-            cout << "safe3" << endl;
-            grid[row][col + 1] = 1 + grid[row][col];
-            col++;
-            q.push({row, col});
-        }
-
-        q.pop();
-    }
-
-    return -1;
-}
-
 int shortestPathBinaryMatrix(vector<vector<int>> &grid)
 {
     int n = grid.size();
-    int m = grid[0].size();
-    int i = n - 1, j = m - 1;
-    q.push({0, 0});
-    int ans = calc(i, j, grid);
+    queue<pair<int, int>> pq;
 
-    for (int i = 0; i < n; i++)
+    if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1)
     {
-        for (int j = 0; j < m; j++)
+        return -1;
+    }    
+
+    pq.push(make_pair(0, 0)); 
+    // all possible dirs are included here
+    int dx[8] = {1, 0, -1, 0, -1, 1, -1, 1};
+    int dy[8] = {0, 1, 0, -1, -1, -1, 1, 1};
+
+    int newcol=0;
+    int newrow = 0;
+
+    grid[0][0] = 1;
+
+    while (!pq.empty())
+    {
+        int row = pq.front().first;
+        int col = pq.front().second;
+
+    
+        if (row == n - 1 && col == n - 1)
         {
-            cout << grid[i][j] << " ";
-        }
-        cout << endl;
-    }
+            return grid[row][col];
+        }    
 
-    return ans;
-}
-
-if (i == grid.size() - 1 && j == grid[0].size() - 1)
-{
-    ans = min(ans, last);
-    return;
-}
-grid[i][j] = 1;
-int x[] = {0, 0, 1, 1, 1, -1, -1, -1};
-int y[] = {1, -1, 0, 1, -1, 0, 1, -1};
-for (int a = 0; a < 8; a++)
-{
-    if (i + x[a] < grid.size() && i + x[a] > -1 && j + y[a] < grid[0].size() && j + y[a] > -1)
-    {
-        if (grid[i + x[a]][j + y[a]] == 0)
+        // iterate for all 8 dirs
+        for (int i = 0; i < 8;i++)
         {
-            dfs(grid, i + x[a], j + y[a], last + 1);
+            newrow = row + dx[i];
+            newcol = col + dy[i];
+
+            if (newrow >= 0 && newrow < n && newcol >= 0 && newcol < n && grid[newrow][newcol] == 0)
+            {
+                pq.push(make_pair(newrow, newcol));
+                grid[newrow][newcol] = grid[row][col] + 1;
+            }
         }
+
+        pq.pop();
     }
-}
-return;
+    return -1;
 }
 
-int main()
-{
-
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int test;
-    cin >> test;
-    while (test--)
-    {
-    }
-    return 0;
-}
+    
+  
