@@ -1,47 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-queue<pair<int, int>> q;
-vector<vector<int>> dir;
-bool isSafe(vector<vector<int>> &grid, int x, int y)
-{
 
-    if (x >= 0 && x < grid.size() && y >= 0 && y < grid[0].size() && grid[x][y] == 0)
-        return true;
-    return false;
-}
+queue<pair<int, int>> q;
+
+// vector<vector<int>> dir;
 
 int calc(int row, int col, vector<vector<int>> &grid)
 {
-    if (row == 0 && col == 0)
-    {
-        return grid[0][0];
-    }
-
     while (!q.empty())
     {
-        auto x = q.front();
-        // q.pop();
 
-        // current posi se har direction mein check karo if 0 is there
-        if (isSafe(grid, row - 1, col - 1))
+        auto x = q.front();
+        int row = x.first;
+        int col = x.second;
+
+        if (row == grid.size() && col == grid[0].size())
         {
-            q.push({row - 1, col - 1});
-            grid[row - 1][col - 1] = 1 + grid[row][col];
+            return grid[grid.size() - 1][grid[0].size() - 1];
         }
-        else if (isSafe(grid, row - 1, col))
+
+        if (grid[row + 1][col + 1] == 0 && row >= 0 && row < grid.size() && col >= 0 && col < grid[0].size())
         {
-            grid[row - 1][col] = 1 + grid[row][col];
-            q.push({row - 1, col});
+            cout << "safe" << endl;
+            q.push({row + 1, col + 1});
+            grid[row + 1][col + 1] = 1 + grid[row][col];
         }
-        else if (isSafe(grid, row, col - 1))
+        else if (grid[row + 1][col] == 0 && row >= 0 && row < grid.size() && col >= 0 && col < grid[0].size())
         {
-            grid[row][col - 1] = 1 + grid[row][col];
-            q.push({row, col - 1});
+            cout << "safe1" << endl;
+            grid[row + 1][col] = 1 + grid[row][col];
+            row++;
+            q.push({row, col});
+            cout << q.front().first << endl;
         }
-        else
+        else if (grid[row][col - 1] == 0 && row >= 0 && row < grid.size() && col >= 0 && col < grid[0].size())
         {
-            grid[row][col] = -1;
+            cout << "safe3" << endl;
+            grid[row][col + 1] = 1 + grid[row][col];
+            col++;
+            q.push({row, col});
         }
 
         q.pop();
@@ -68,6 +66,27 @@ int shortestPathBinaryMatrix(vector<vector<int>> &grid)
     }
 
     return ans;
+}
+
+if (i == grid.size() - 1 && j == grid[0].size() - 1)
+{
+    ans = min(ans, last);
+    return;
+}
+grid[i][j] = 1;
+int x[] = {0, 0, 1, 1, 1, -1, -1, -1};
+int y[] = {1, -1, 0, 1, -1, 0, 1, -1};
+for (int a = 0; a < 8; a++)
+{
+    if (i + x[a] < grid.size() && i + x[a] > -1 && j + y[a] < grid[0].size() && j + y[a] > -1)
+    {
+        if (grid[i + x[a]][j + y[a]] == 0)
+        {
+            dfs(grid, i + x[a], j + y[a], last + 1);
+        }
+    }
+}
+return;
 }
 
 int main()
