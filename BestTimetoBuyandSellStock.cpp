@@ -6,45 +6,18 @@ using namespace std;
 int maxProfit(vector<int> &p)
 {
     int n = p.size();
-    int dp[n + 1][n + 1];
-    int min = ;
-    int sum = 0;
-    for (int j = 2; j <= n; j++)
-    {
+    if (n<2){
+        return 0;
     }
-    for (int i = 1; i <= n; i++)
+    int min_no = p[0];
+    int ans = 0;
+    for (int i = 1; i < n; i++)
     {
-        for (int j = 2; j <= n; j++)
-        {
-            if ()
-        }
+        ans = max(ans, p[i] - min_no);
+
+        min_no = min(min_no, p[i]);
     }
-
-    // int profit = 0;
-    // int l = 0;
-    // int r = p.size();
-    // int val = 0;
-    // while (l<r)
-    // {
-    //     val = p[l] - p[r];
-    //     if(val > profit){
-    //         profit = val;
-    //     }
-    //     if(p[l+1] < p[l]){
-    //         l++;
-    //         continue;
-    //     }
-    //     if(p[r-1] > p[r]){
-    //         r--;
-    //         continue;
-    //     }
-
-    //     l++;
-    //     r--;
-
-    // }
-
-    // return profit;
+    return ans;
 }
 
 int main()
