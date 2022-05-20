@@ -6,14 +6,27 @@ using namespace std;
 bool fun(vector<vector<char>> &board, int row, int col, string word[], int i)
 {
 
-    if (i == word.length() - 1)
+    if (i == word.size())
     {
         return true;
     }
 
-    return fun(board, row, col, word, i + 1)
+    if (row < 0 || col < 0 || row >= board.size() || col >= board[0].size())
+    {
+        return false;
+    }
 
-        fun(board, i, j, word, i + 1)
+    if (board[row][col] == word[i] && i < word.length())
+    {
+        char c = board[row][col];
+        board[row][col] = '?';
+
+        int a = (fun(board, row - 1, col, word, i + 1) | fun(board, row + 1, col, word, i + 1) | fun(board, row, col - 1, word, i + 1) | fun(board, row, col + 1, word, i + 1));
+
+        board[row][col] = c;
+        return a;
+    }
+    return false;
 }
 
 bool exist(vector<vector<char>> &board, string word)
