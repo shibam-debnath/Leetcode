@@ -18,14 +18,14 @@ void combinationUtil(int arr[], int new_arr[], int start, int end, int index, in
         return;
     }
     // recursion logic
-    for (int j = start; j < (end - start) - r; j++)
+    for (int j = start; j <= end && j <= (end - r) + index + 1; j++)
     {
         while (arr[j] == arr[j + 1])
         {
-            j++;
+            continue;
         }
         new_arr[index] = arr[j];
-        combinationUtil(arr, new_arr, start + 1, end, index + 1, r);
+        combinationUtil(arr, new_arr, j + 1, end, index + 1, r);
     }
 }
 
