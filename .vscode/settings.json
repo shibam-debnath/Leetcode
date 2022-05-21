@@ -11,6 +11,13 @@
     "istream": "cpp",
     "tuple": "cpp",
     "utility": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "*.cp": "cpp",
+    "valarray": "cpp",
+    "cmath": "cpp",
+    "complex": "cpp",
+    "cstdlib": "cpp"
   }
 }
