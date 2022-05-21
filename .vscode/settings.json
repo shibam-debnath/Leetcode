@@ -18,6 +18,9 @@
     "valarray": "cpp",
     "cmath": "cpp",
     "complex": "cpp",
-    "cstdlib": "cpp"
+    "cstdlib": "cpp",
+    "bitset": "cpp",
+    "initializer_list": "cpp",
+    "regex": "cpp"
   }
 }
