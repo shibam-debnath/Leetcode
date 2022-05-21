@@ -10,8 +10,8 @@ int coinChange(vector<int> &coins, int t)
     vector<vector<int>> dp(n + 1, vector<int>(t + 1, INT_MAX - 5));
 
     for (int i = 0; i <= t; i++)
-    { // if we don't tale this row then our logic to fill dp matrix shows index 
-    //out of bound for i=2 and j=1
+    {   // if we don't tale this row then our logic to fill dp matrix shows index
+        // out of bound for i=2 and j=1
         dp[0][i] = INT_MAX - 5;
     }
 
@@ -31,7 +31,7 @@ int coinChange(vector<int> &coins, int t)
         }
     }
 
-    for (int i = 2; i < n+1; i++)
+    for (int i = 2; i < n + 1; i++)
     {
         for (int j = 1; j < t + 1; j++)
         {
@@ -44,7 +44,7 @@ int coinChange(vector<int> &coins, int t)
             {
                 // if element is smaller than target we have a chance to add or not
                 // if we add then 1+ dp[i][j - coins[i - 1]] where this dp value
-                // let we can 8 and current num is 5 so we'll search if 8-5==3 is possible to get as a sum or not. 
+                // let we can 8 and current num is 5 so we'll search if 8-5==3 is possible to get as a sum or not.
                 dp[i][j] = min(1 + dp[i][j - coins[i - 1]], dp[i - 1][j]);
             }
         }
