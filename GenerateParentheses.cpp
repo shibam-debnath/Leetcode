@@ -21,7 +21,7 @@ void generate(string s, int l, int r, vector<string> &ans)
     {
         s.push_back('(');
         generate(s, l - 1, r, ans);
-        // s.pop_back();
+        s.pop_back();
     }
 
     if (r > 0 && r > l)
