@@ -22,6 +22,8 @@
     "bitset": "cpp",
     "initializer_list": "cpp",
     "regex": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "unordered_set": "cpp",
+    "string_view": "cpp"
   }
 }
