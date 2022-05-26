@@ -12,20 +12,18 @@ vector<string> tens = {"Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy",
 
 string numberToWords(int num)
 {
-    string numberToWords(int num)
+    if (num == 0)
     {
-        if (num == 0)
-        {
-            return "Zero";
-        }
-        else
-        {
-            string ret = func(num);
-            // to handle beg spaces
-            return ret.substr(1, ret.length() - 1);
-        }
+        return "Zero";
+    }
+    else
+    {
+        string ret = func(num);
+        // to handle beg spaces
+        return ret.substr(1, ret.length() - 1);
     }
 }
+
 string func(int num)
 {
     // edge case
