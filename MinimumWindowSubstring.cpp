@@ -1,10 +1,11 @@
 // Shibam Debnath
-// May 23,2022
+// May 26,2022
 
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-string smallestWindow(string s, string t)
+
+string minWindow(string s, string t)
 {
     unordered_map<char, int> mp;
 
