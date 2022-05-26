@@ -12,48 +12,67 @@ vector<string> tens = {"Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy",
 
 string numberToWords(int num)
 {
+    string numberToWords(int num)
+    {
+        if (num == 0)
+        {
+            return "Zero";
+        }
+        else
+        {
+            string ret = func(num);
+            // to handle beg spaces
+            return ret.substr(1, ret.length() - 1);
+        }
+    }
+}
+string func(int num)
+{
     // edge case
     if (num == 0)
     {
-        return "Zero";
+        return "";
     }
     // base case
     if (num <= 19)
     {
-        s = ones[num - 1];
-        return s;
+        return " " + ones[num - 1];
+    }
+    else if (num == 20 || num == 30 || num == 40 || num == 50 || num == 60 || num == 70 || num == 80 || num == 90)
+    {
+        return " " + tens[num / 10 - 2];
     }
     else if (num <= 99)
     {
-        s = tens[num / 10 - 2] + " " + numberToWords(num % 10); //-2 since in ten's place we are starting from twenty
+        return " " + tens[num / 10 - 2] + func(num % 10); //-2 since in ten's place we are starting from twenty
     }
     // hundred
     else if (num <= 999)
     {
-        s = numberToWords(num / 1000) + " Hundred" + " " + numberToWords(num % 100); // 900 ka kam ho gaya ab 99 ko bhejo
+        return func(num / 100) + " Hundred" + func(num % 100); // 900 ka kam ho gaya ab 99 ko bhejo
     }
     // thousand
     else if (num <= pow(10, 6) - 1)
     {
-        s = numberToWords(num / 1000) + " Thousand" + " " + numberToWords(num % 1000); // hazar ka kam ho gaya ab 99 ko bhejo
+        return func(num / 1000) + " Thousand" + func(num % 1000); // hazar ka kam ho gaya ab 99 ko bhejo
     }
     // Million
     else if (num <= pow(10, 9) - 1)
     {
-        s = numberToWords(num / 1000000) + " Million" + " " + numberToWords(num % 1000000); // hazar ka kam ho gaya ab 99 ko bhejo
+        return func(num / 1000000) + " Million" + func(num % 1000000); // hazar ka kam ho gaya ab 99 ko bhejo
     }
     else
     {
 
-        s = numberToWords(num / 1000000000) + " Billion" + " " + numberToWords(num % 1000000000); // hazar ka kam ho gaya ab 99 ko bhejo
+        return func(num / 1000000000) + " Billion" + func(num % 1000000000); // hazar ka kam ho gaya ab 99 ko bhejo
     }
 
-    return s;
+    return "";
 }
 int main()
 {
-    // Main function goes here
+    // Main func goes here
     int n = 1352472;
-    cout << numberToWords(n) << endl;
+    cout << func(n) << endl;
     return 0;
 }
