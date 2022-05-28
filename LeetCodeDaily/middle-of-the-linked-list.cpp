@@ -8,7 +8,6 @@ struct ListNode
 {
     int val;
     ListNode *next;
-                                                                                                                                      *
 };
 
 ListNode *middleNode(ListNode *head)
