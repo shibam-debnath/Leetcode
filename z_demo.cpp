@@ -1,5 +1,10 @@
 // Shibam Debnath
 // May 23,2022
+struct ListNode
+{
+    int val;
+    ListNode *next;
+};
 
 #include <bits/stdc++.h>
 using namespace std;
