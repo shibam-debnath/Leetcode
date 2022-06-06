@@ -15,6 +15,10 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// !Best Resource
+// https://leetcode.com/problems/unique-binary-search-trees/discuss/1565543/C%2B%2BPython-5-Easy-Solutions-w-Explanation-or-Optimization-from-Brute-Force-to-DP-to-Catalan-O(N)
+
+
 // for n=0 , ans = 1
 // for n=1 , ans = 1
 // for n=2 , we have (f0 * f1) + (f1 * f0)  , ans = 2;
