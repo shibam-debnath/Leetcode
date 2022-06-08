@@ -8,10 +8,6 @@ using namespace std;
 class Solution
 {
 public:
-    
-    
-
-
     int leastInterval(vector<char> &tasks, int n)
     {
         unordered_map<char, int> mp;
@@ -20,7 +16,8 @@ public:
         {
             mp[x]++;
             // calculate the highest freq
-            if(mp[x] > max_freq){
+            if (mp[x] > max_freq)
+            {
                 max_freq = mp[x];
             }
         }
@@ -28,24 +25,26 @@ public:
         // this stores how many characters are there with highest freq .
         int highest_freq_char_count = 0;
 
-        for(auto i : mp){
-            if(i.second == max_freq){
+        for (auto i : mp)
+        {
+            if (i.second == max_freq)
+            {
                 highest_freq_char_count++;
             }
         }
-        //Lower bound of this problem is this - 
-        //take your copy and pen ,go through 1/2 test cases and you'll definitely find what this logic is (Greedy)
+        // Lower bound of this problem is this -
+        // take your copy and pen ,go through 1/2 test cases and you'll definitely find what this logic is (Greedy)
         int ans1 = (n + 1) * (max_freq - 1) + highest_freq_char_count;
-        //but what if we have this condition
+        // but what if we have this condition
 
-        // [ "A", "A", "A", "B", "B", "B", "C", "C", "C", "D", "D", "E" ] 
+        // [ "A", "A", "A", "B", "B", "B", "C", "C", "C", "D", "D", "E" ]
         // 2 or 0
 
         // here ans doesn't depend on max count
         // here we need to check the upper bound That is, what if we don't have any idle time units, what is the answer then?
 
         int ans2 = tasks.size();
-        return max(ans1,ans2);
+        return max(ans1, ans2);
     }
 };
 
