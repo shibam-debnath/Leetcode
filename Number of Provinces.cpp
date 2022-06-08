@@ -49,6 +49,39 @@ public:
     }
 };
 
+// space optimization
+class Solution
+{
+public:
+    void DFS(int v, vector<vector<int>> &e)
+    {
+        vis[v] = true;
+        for (int i = 0; i < e.size(); i++)
+        {
+            if (!vis[i] && e[v][i])
+            {
+                DFS(i, e);
+            }
+        }
+    }
+    unordered_map<int, bool> vis;
+    int findCircleNum(vector<vector<int>> e)
+    {
+        int count = 0;
+        for (int i = 0; i < e.size(); i++)
+        {
+            if (vis[i])
+            {
+                continue;
+            }
+            count++;
+            DFS(i, e);
+        }
+
+        return count;
+    }
+};
+
 int main()
 {
     // Main function goes here
