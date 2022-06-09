@@ -8,9 +8,8 @@ using namespace std;
 class Solution
 {
 public:
-    
     int dr[4] = {-1, +1, 0, 0};
-    int dc[4] = {0,0,+1,-1};
+    int dc[4] = {0, 0, +1, -1};
 
     vector<vector<int>> updateMatrix(vector<vector<int>> &mat)
     {
@@ -41,14 +40,15 @@ public:
             // go to all 4 directions and check
             for (size_t i = 0; i < 4; i++)
             {
-                int newR = x.first + dr[i]; //here x contains the coordinates of starting/parent node/old node 
+                int newR = x.first + dr[i]; // here x contains the coordinates of starting/parent node/old node
                 int newC = x.second + dc[i];
-                //if visited skip && skip invalid cases // not -1 means we have already visited
-                if(newR < 0 || newC < 0 || newR >= m || newC >= n || mat[newR][newC] != -1){
+                // if visited skip && skip invalid cases // not -1 means we have already visited
+                if (newR < 0 || newC < 0 || newR >= m || newC >= n || mat[newR][newC] != -1)
+                {
                     continue;
                 }
 
-                //update part
+                // update part
                 mat[newR][newC] = 1 + mat[x.first][x.second];
                 q.push({newR, newC});
             }
