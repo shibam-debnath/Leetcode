@@ -42,7 +42,7 @@ public:
                 ans = max(ans, i - k + 1);
             }
         }
-        // finally return max total len - len of max subarray with sum = t
+        // finally return max total len - len of max subarray with sum = tCount Sub Islands
         return ans == INT_MIN ? -1 : n - ans;
     }
 };
