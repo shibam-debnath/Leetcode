@@ -21,7 +21,7 @@ int findMaxValueOfEquation(vector<vector<int>> &pt, int k)
     for (int i = 1; i < n; i++)
     {
         ans = pt[i][0] + pt[i][1];
-        while (!pq.empty && (pt[i][0] - pq.top().second) > k)
+        while (!pq.empty() && (pt[i][0] - pq.top().second) > k)
         {
             pq.pop(); // if this diff is greater than our pq.top() next walo se to bada hoga hi since it is already in increasing order
         }
