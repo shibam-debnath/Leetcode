@@ -7,6 +7,8 @@ using namespace std;
 
 class Solution
 {
+    // Multi source BFS
+
 public:
     int dr[4] = {-1, +1, 0, 0};
     int dc[4] = {0, 0, +1, -1};
@@ -17,7 +19,7 @@ public:
         queue<pair<int, int>> q;
 
         int frsh = 0; // fresh oranges count
-        int ans = -1;
+        int ans = 0;
 
         for (int r = 0; r < m; ++r)
         {
@@ -26,7 +28,8 @@ public:
                 // starting positions (rotten oranges)
                 if (grid[r][c] == 2)
                 {
-                    q.push({r, c});
+                    q.push({r,
+                            c});
                 }
                 else if (grid[r][c] == 1)
                 {
@@ -34,24 +37,29 @@ public:
                 }
             }
         }
-        //bfs
-        while (!q.empty())
+        while (frsh != 0 && !q.empty())
         {
-            auto x = q.front();
-            q.pop();
-
-            for (size_t i = 0; i < 4; i++)
+            int size = q.size();
+            while (size--)
             {
-                int newR = x.first + dr[i];
-                int newC = x.second + dc[i];
+                auto x = q.front();
+                q.pop();
 
-                if (newR >= 0 && newR < m && newC >= 0 && newC < n && grid[newR][newC] == 1)
+                for (size_t i = 0; i < 4; i++)
                 {
-                    grid[newR][newC] = 2;
-                    q.push({newR, newC});
-                    frsh--;
+                    int newR = x.first + dr[i];
+                    int newC = x.second + dc[i];
+
+                    if (newR >= 0 && newR < m && newC >= 0 && newC < n && grid[newR][newC] == 1)
+                    {
+                        grid[newR][newC] = 2;
+                        q.push({newR,
+                                newC});
+                        frsh--;
+                    }
                 }
             }
+
             ans++;
         }
         if (frsh > 0)

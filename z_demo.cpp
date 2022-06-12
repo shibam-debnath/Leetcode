@@ -1,13 +1,13 @@
 // Shibam Debnath
 // May 23,2022
 
-//linked list
+// linked list
 struct ListNode
 {
     int val;
     ListNode *next;
 };
-//tree
+// tree
 struct TreeNode
 {
     int val;
