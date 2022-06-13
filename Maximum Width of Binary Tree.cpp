@@ -50,6 +50,7 @@ public:
                 // eg - 8-4 = 4
                 //    (8-2)-(4-2) = 4
                 ll idx = v.second - front;
+                // we can also use unsigned long long int no to get runtime error 
                 q.pop();
 
                 if (node->left)
