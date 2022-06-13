@@ -46,11 +46,11 @@ public:
                 auto v = q.front();
                 TreeNode *node = v.first;
                 // if we find index using prev level node val then it gives runtime error after a large level since it is multiplied by 2 everytime. So we need to optimize it.
-                // what we do is that since we are calculating the diff only so we substrack the idx by a val everytime
+                // what we do is that since we are calculating the diff only so we substrack the idx by the front value everytime
                 // eg - 8-4 = 4
                 //    (8-2)-(4-2) = 4
                 ll idx = v.second - front;
-                // we can also use unsigned long long int no to get runtime error 
+                // we can also use unsigned long long int no to get runtime error
                 q.pop();
 
                 if (node->left)
