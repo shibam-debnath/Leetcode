@@ -35,7 +35,7 @@ public:
         if (word1[i] == word2[j])
         {
             // check for next two chars in both string
-            return helper(i + 1, j + 1, n, m, word1, word2);
+            return dp[i][j] = helper(i + 1, j + 1, n, m, word1, word2);
         }
 
         // if they are not same s1 = mmeg   s2 = eg  , so first char are m and e . not same so we have to increment a position but
