@@ -20,7 +20,7 @@ public:
             for (int c = 0; c < n; ++c)
             {
                 if (mat[r][c] == 0)
-                {
+                {            
                     q.emplace(r, c); // starting nodes from where we'll calculate min distance
                 }
                 else
