@@ -13,12 +13,11 @@ class Solution
             for (int i = 0; i < n; i++)
             {
                	// check LIS upto i and store max
-                for (int j = 0; j < i; j++)
+                for (int j = i-1; j >=0; j--)
                 {
                     if (nums[j] < nums[i]){
                         //      lena k baad    nehi lene k baad
                         dp[i] = max(1 + dp[j],  dp[i]);
-                        
                         ans = max(ans,dp[i]);
                     }
                 }
