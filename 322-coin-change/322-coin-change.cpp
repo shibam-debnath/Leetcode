@@ -1,8 +1,8 @@
 class Solution {
 public:
     // Unbounded knapsack variation
-    // Time Complexity :::  O(n2)
-    // Space Complexity ::: O(n2)
+    // Time Complexity :::  O(mn)
+    // Space Complexity ::: O(mn)
     
     int coinChange(vector<int> &coins, int t)
 {
@@ -26,12 +26,14 @@ public:
     {
         for (int j = 1; j <= t; j++)
         {
+            
             // coin itself is geater than target don't take that ith coin
             if (coins[i - 1] > j)
             {
                 dp[i][j] = dp[i-1][j];
             } 
-            // else   min ( nehi lena hein    ||      lena h ) ->if le rhe ho then +1 becoz we are taking one coin
+            
+            // else take min ( nehi lena hein    ||    lena h ) ->if le rhe ho then +1 becoz we are taking one coin and decrement the target val j by that coin i.e coins[i-1]
             else
             {
                 dp[i][j] = min(dp[i - 1][j], dp[i][j -(coins[i-1])] + 1);
