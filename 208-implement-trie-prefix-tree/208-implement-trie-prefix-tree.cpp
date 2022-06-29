@@ -9,13 +9,15 @@ class Trie
         };
     };
 
+    TrieNode *trie = new TrieNode();
+    
+    
     public:
 
-    TrieNode *trie = new TrieNode();
 
     Trie()
     {
-       	//constructor
+       	//constructor   
         cout << "Hurrah !";
     }
 
