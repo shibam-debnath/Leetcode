@@ -1,15 +1,18 @@
-struct TrieNode
-{
-    bool End = false;
-    TrieNode *child[26] = { NULL
-    };
-};
 class Trie
 {
-   	// private:
+    private:
+    
+    struct TrieNode
+    {
+        bool End = false;
+        TrieNode *child[26] = { NULL
+        };
+    };
 
     public:
-        TrieNode *trie = new TrieNode();
+
+    TrieNode *trie = new TrieNode();
+
     Trie()
     {
        	//constructor
