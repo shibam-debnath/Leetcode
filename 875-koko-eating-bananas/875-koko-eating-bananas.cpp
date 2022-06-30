@@ -17,6 +17,8 @@ class Solution
             int r = *max_element(piles.begin(), piles.end());
             int mid = 0;
             
+            if(h==n) return r;
+            
         	//find occurance of first element from l to h (hour) when our API gives that yes koko can complete 
             
             while (l <= r)
