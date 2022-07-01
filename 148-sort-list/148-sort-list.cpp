@@ -31,7 +31,6 @@ public:
 
         // divide
         
-        cout << head->val << "  " << slow->val << endl;
         ListNode *left = sortList(head);
         
         ListNode *right = sortList(slow);
@@ -52,12 +51,12 @@ public:
         {
             if (l->val <= r->val)
             {
-                ptr->next = l;
+                ptr->next = new ListNode(l->val);
                 l = l->next;
             }
             else
             {
-                ptr->next = r;
+                ptr->next = new ListNode(r->val);
                 r = r->next;
             }
             ptr = ptr->next;
