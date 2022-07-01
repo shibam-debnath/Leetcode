@@ -20,16 +20,11 @@ public:
                 return nums[left];
             }
             
-            // if nums[mid] is smaller than nums[left] matlab rotated part left m hein
-            if (nums[left] > nums[mid])
-            {
-                // go to left kiuki waha rotated part hoga
+            // if nums[mid] >= nums[left] that means left->mid is in right form so go to right for our ans
+            if (nums[mid]>=nums[left]) {
+                left = mid+1;
+            } else {
                 right = mid;
-            }
-            else if (nums[right] <= nums[mid])
-            {
-                // go to right
-                left = mid + 1;
             }
         }
         return nums[left];
