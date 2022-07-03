@@ -24,8 +24,8 @@ public:
         if(!root) return;
         ans.push_back(root->val);
         
-        for(auto it=root->children.begin();it!=root->children.end();it++){
-            dfs(*it,ans);
+        for(auto ch : root->children){
+            dfs(ch,ans);
         }
     }
     
