@@ -1,14 +1,27 @@
-class Solution {
-public:
-    int peakIndexInMountainArray(vector<int>& arr) {
-        int prev_diff=arr[1]-arr[0];
-        for(int i=2;i<arr.size();i++){
-            int curr_diff = arr[i]-arr[i-1];
-            if(prev_diff>0 && curr_diff<0 || prev_diff<0 && curr_diff>0){
-                return i-1;
+class Solution
+{
+    public:
+       	// can be solved with O(logn) also
+       	// find the occurance of first down slope
+        int peakIndexInMountainArray(vector<int> &nums)
+        {
+            int low = 0, high = nums.size() - 1;
+            int ans = -1;
+
+            while (low <= high)
+            {
+                int mid = low + (high - low) / 2;
+                if (nums[mid]>nums[mid+1])
+                {
+                    ans = mid;
+                    high = mid - 1;	// Look for better answer to the left
+                }
+                else
+                {
+                    low = mid + 1;
+                }
             }
-            prev_diff=curr_diff;
+
+            return ans;
         }
-        return 0;
-    }
 };
