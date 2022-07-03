@@ -17,13 +17,13 @@ public:
         for (int i = 2; i < n; i++)
         {
             int diff = nums[i]-nums[i-1];
-            cout << diff << " ";
+            // cout << diff << " ";
             if(diff > 0 && last_diff <= 0 || diff < 0 && last_diff >= 0 ){
                 ans++;
                 last_diff=diff;
             }          
         }
-        cout << "\n";
+        // cout << "\n";
         return ans;
     }
 };
