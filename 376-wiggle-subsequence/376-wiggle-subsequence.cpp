@@ -5,21 +5,25 @@ public:
     {
         // LIS variation
         int n = nums.size();
-
-        int up = 1, down = 1;
-        for (int i = 1; i < n; i++)
+        
+        //base cases 
+        if(n==1) return 1;
+        
+        int ans=0;
+        if(nums[0]!=nums[1]) ans=2;
+        else ans= 1;
+        
+        int last_diff=nums[1]-nums[0];
+        for (int i = 2; i < n; i++)
         {
-
-            if (nums[i - 1] < nums[i])
-            {
-                // calculate no of prev ans + new curr up
-                up = down + 1;
-            }
-            else if (nums[i - 1] > nums[i])
-            {
-                down = up + 1;
-            }
+            int diff = nums[i]-nums[i-1];
+            cout << diff << " ";
+            if(diff > 0 && last_diff <= 0 || diff < 0 && last_diff >= 0 ){
+                ans++;
+                last_diff=diff;
+            }          
         }
-        return max(up, down);
+        cout << "\n";
+        return ans;
     }
 };
