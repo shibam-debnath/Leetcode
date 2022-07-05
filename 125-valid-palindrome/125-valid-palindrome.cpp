@@ -4,26 +4,20 @@ public:
         
         if(s.size()==1) return true;
         
-        string str="";
+        int left=0,right=s.size()-1;
         
-        for(auto &c : s){
+        while(left<right){
             
-            //uppercse to lower
-            if(c>='A' && c <='Z'){
-                char low = c | ' ';
-                // cout << low << " ";
-                str.push_back(low);
-            }
-            else if(c>='a' && c <='z' || isalnum(c)){
-                str.push_back(c);
+            if(isalnum(s[left])==false) left++;
+            else if(isalnum(s[right])==false) right--;
+            
+            else if(tolower(s[left])!=tolower(s[right])) return false;
+
+            else {
+                left++;right--;
             }
         }
         
-        if(str.size()==0 || str.size()==1 ) return true;
-        
-        string rev=str;
-        reverse(rev.begin(),rev.end());
-        
-        return rev==str;
+        return true;
     }
 };
