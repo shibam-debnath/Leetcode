@@ -7,39 +7,30 @@ class Solution
 
         vector<vector < int>> subsetsWithDup(vector<int> &nums)
         {
-            sort(nums.begin(),nums.end());
            	// to store each subsets
             vector<int> subset;
+
            	// to store all subsets
             vector<vector < int>> subsets_all;
-
-            show_subset(subset, nums, 0, subsets_all, true);
+            
+            sort(nums.begin(),nums.end());
+            show_subset(subset, nums, 0, subsets_all);
+            
             return subsets_all;
         }
 
-
-
-    void show_subset(vector<int> &subset, vector<int> &nums, int i, vector< vector< int>> &subsets_all, bool prev)
+    void show_subset(vector<int> &subset, vector<int> &nums, int index, vector< vector< int>> &subsets_all)
     {
+        subsets_all.push_back(subset);
 
-       	// base case
-        if (i == nums.size())
+        for (int i = index; i < nums.size(); i++)
         {
-            subsets_all.push_back(subset);
-            return;
-        }
-        else
-        {
-           	// not adding the element
-            show_subset(subset, nums, i + 1, subsets_all, false);
-           	// if we haven't taken prev element and curr element is same as prev element
-           	// we'll be taking this time too
-            if (i > 0 && nums[i] == nums[i - 1] && !prev) return;
-
-           	// adding the element
-            subset.push_back(nums[i]);
-            show_subset(subset, nums, i + 1, subsets_all, true);
-            subset.pop_back();
+            if(i!=0 && nums[i]==nums[i-1] && i>index) continue; 
+            
+            subset.push_back(nums[i]);	//add
+            show_subset(subset, nums, i + 1, subsets_all);
+            subset.pop_back();	//remove
         }
     }
+
 };
