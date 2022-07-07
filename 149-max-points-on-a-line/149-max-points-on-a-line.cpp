@@ -4,11 +4,9 @@ class Solution
         int maxPoints(vector<vector < int>> &points)
         {
             int n = points.size();
-            
             if(n<=2) return n;
             
             int max_point = 0;
-
             double slope = 0;
 
             for (int i = 0; i < n; i++)
@@ -30,11 +28,8 @@ class Solution
                     {
                         slope = (double)(y2 - y1) / (double)(x2 - x1);
                     }
-
-                    cout << slope << "  ";
                     mp[slope]++;
                 }
-                cout << endl;
 
                 for (auto slope: mp)
                 {
