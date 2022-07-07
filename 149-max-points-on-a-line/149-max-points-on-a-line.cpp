@@ -1,3 +1,4 @@
+
 class Solution
 {
     public:
@@ -20,24 +21,16 @@ class Solution
                     int x2 = points[j][0];
                     int x1 = points[i][0];
 
-                    if (x1 == x2)
-                    {
-                        slope = INT_MAX;
-                    }
-                    else
-                    {
-                        slope = (double)(y2 - y1) / (double)(x2 - x1);
-                    }
+                    if (x1 == x2)  slope = INT_MAX;
+                    else  slope = (double)(y2 - y1) / (double)(x2 - x1);
                     mp[slope]++;
+					
                 }
-
                 for (auto slope: mp)
-                {
-
-                    max_point = max(max_point, slope.second);
-                }
+					max_point = max(max_point, slope.second);
+               
             }
 
             return max_point + 1;
-        }
+       }
 };
