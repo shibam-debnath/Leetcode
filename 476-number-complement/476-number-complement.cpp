@@ -1,16 +1,16 @@
 class Solution {
 public:
+    
+    // or create a no with all bits 1 of size as num
+    // then xor both two
+    
     int findComplement(int num) {
-        int c=31;
-        while(c>=0 && (num&(1<<c))==0){
-            //reach first 1
-            c--;
+        int ones =0,temp=num;
+        while(num){
+            ones  = 1 | (ones<<1); 
+            num>>=1;
         }
-        // toggle every bit from here
-        while(c>=0){
-            num = num^(1<<c);
-            c--;
-        }
-        return num; 
+        
+        return ones^temp; 
     }
 };
