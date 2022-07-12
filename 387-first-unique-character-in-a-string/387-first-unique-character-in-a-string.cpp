@@ -1,20 +1,17 @@
-class Solution {
-public:
-    int firstUniqChar(string s) {
-    unordered_map<char,int> mp,np;
-    for (int i=s.size()-1;i>=0;i--)
-    {
-        mp[s[i]]++;
-        np[s[i]]=i;
-    }
-    for (auto &m : mp)
-    {
-        if(m.second==1){
-            char c=m.first;
-            return np[c];
-        } 
-    }
-    
-    return -1;
-    }
+class Solution
+{
+    public:
+        int firstUniqChar(string s)
+        {
+            unordered_map<char, int> mp;
+            for (int i = 0; i < s.size(); i++)
+            {
+                mp[s[i]]++;
+            }
+            for (int i = 0; i < s.size(); i++)
+            {
+                if (mp[s[i]] == 1) return i;
+            }
+            return -1;
+        }
 };
