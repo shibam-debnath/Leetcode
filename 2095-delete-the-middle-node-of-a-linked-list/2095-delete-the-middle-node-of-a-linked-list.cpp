@@ -17,25 +17,16 @@ public:
             return NULL;
         } 
         
-        if(!head->next->next){
-            head->next = NULL;
-            return head;
-        } 
-   
-        ListNode *slow =head , *fast =head , *temp = head;
+        
+        auto *slow =head;
+        auto *fast =head->next->next;
         
         while(fast && fast->next){
-            slow=slow->next;
             fast = fast->next->next;
+            slow=slow->next;
         }
-        
-        while(temp->next!= slow){
-            temp = temp->next;
-        }
-        
-        temp->next = slow->next;
 
-        // slow->next = slow->next->next;
+        slow->next = slow->next->next;
         
         return head;
     }
