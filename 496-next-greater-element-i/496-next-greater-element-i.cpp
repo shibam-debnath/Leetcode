@@ -13,9 +13,6 @@ class Solution
                         mp[nums2[i]] = nums2[j];
                         break;
                     }
-                    if(j==m) {
-                        mp[nums2[i]] = -1;
-                    }
                 }
             }
             
