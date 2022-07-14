@@ -30,9 +30,6 @@ class Solution
          TreeNode *root = new TreeNode(preorder[idx]);
          idx++;
          
-         if(inStart==inEnd){
-             return root;
-         }
          // logic 
          int pos = mp[root->val];
          
