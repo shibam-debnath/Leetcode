@@ -29,19 +29,6 @@ class Solution
                     res.push_back(temp);
                 }
             }
-            
-            // for(auto it=m.begin();it!=m.end();it++){
-            // int k=it->first;
-            // int ind=0;
-            // while(ind!=m[k].size()){
-            //     vector<int> temp;
-            //     for(int i=ind;i<ind+k;i++){
-            //         temp.push_back(m[k][i]);
-            //     }
-            //     ind+=k;
-            //     res.push_back(temp);
-            // }
-                
                 
             return res;
         }
