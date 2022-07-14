@@ -21,8 +21,7 @@ public:
             head->next = NULL;
             return head;
         } 
-            
-            
+   
         ListNode *slow =head , *fast =head , *temp = head;
         
         while(fast && fast->next){
@@ -30,19 +29,14 @@ public:
             fast = fast->next->next;
         }
         
-        // handle even nodes
-        if(fast && fast->next){
-            // cout << "jsgsq" ;
-            fast=fast->next;
-            slow=slow->next;
-        }
-        
-        // cout << slow->val << endl;
         while(temp->next!= slow){
             temp = temp->next;
         }
         
         temp->next = slow->next;
+
+        // slow->next = slow->next->next;
+        
         return head;
     }
 };
