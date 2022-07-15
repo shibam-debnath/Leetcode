@@ -12,9 +12,7 @@ class Solution
                 for (int j = 0; j < n; j++)
                 {
                     
-                    // store min of all three possibilities
-                    
-                    // TRICK -  since j-1 can be out of range so what bwe do is that 
+                    // TRICK -  since j-1 can be out of range so  matrix[i-1][j-1] = matrix[i-1][max(0,j-1)]
                     matrix[i][j] = matrix[i][j] + min(matrix[i-1][j],min(matrix[i-1][max(0,j-1)],matrix[i-1][min(j+1,n-1)]));
                 }
             }
