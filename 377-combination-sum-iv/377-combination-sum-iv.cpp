@@ -1,19 +1,24 @@
 class Solution {
 public:
-    int combinationSum4(vector<int>& nums, int target) {
-        int n=nums.size();
+    int helper(vector<int>& nums, int target,vector<int>& dp,int n){
         
-        vector<unsigned long long> dp(target+1,0);
+        if(target==0) return 1;
         
-        dp[0] = 1;
+        if(dp[target]!=-1) return dp[target];
         
-        for(int i=1;i<=target;i++){
-            for(int j=1;j<=n;j++){
-                if(nums[j-1]<=i){
-                    dp[i] += dp[i-nums[j-1]];
-                } 
-            }
+        // logic
+        dp[target] = 0;
+        for(auto &num : nums){
+            if(num<=target){
+                dp[target] += helper(nums,target-num,dp,n);   
+            }  
         }
         return dp[target];
+    }
+    
+    int combinationSum4(vector<int>& nums, int target) {
+        int n=nums.size();
+        vector<int> dp(target+1,-1);
+        return helper(nums,target,dp,n);
     }
 };
