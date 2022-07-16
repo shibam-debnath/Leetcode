@@ -11,7 +11,7 @@ public:
     int dfs(int m, int n,int maxMove, int i, int j){
         
         //base case
-        if(i>=m || j>=n || i<0 || j<0) return 1;
+        if((i>=m || j>=n || i<0 || j<0) && maxMove>=0) return 1;
         
         if(maxMove<=0) return 0;
         
