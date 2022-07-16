@@ -1,55 +1,40 @@
-class Solution
-{
+class Solution {
 public:
-    int subset_sum(vector<int> &arr, int t)
-    {
-        int n = arr.size();
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int sum = accumulate(nums.begin(),nums.end(),0);
+        int Subset_sum_target = (target+sum)/2;
+        
+        if (Subset_sum_target > sum || (target+sum)%2 != 0) return 0;
+        
+        Subset_sum_target=abs(Subset_sum_target);
+        
+        return subset_sum(nums,Subset_sum_target);
+    }
+    
+    int subset_sum(vector<int>& nums, int t){
+        int n = nums.size();
 
         // Dp matrix
-        int ans[n + 1][t + 1];
+        int dp[n + 1][t + 1];
 
-        // *Base Case or initialization
 
-        for (int i = 1; i <= t; i++)
-        {
-            ans[0][i] = 0;
-        }
-        for (int i = 0; i <= n; i++)
-        {
-            ans[i][0] = 1;
-        }
+        for (int i = 0; i <= t; i++) dp[0][i] = 0;
+        for (int i = 0; i <= n; i++) dp[i][0] = 1;
 
-        //* Choice Diagram
-
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 0; j <= t; j++)
-            {
-                if (arr[i - 1] <= j)
-                {
-                    ans[i][j] = ans[i - 1][j - arr[i - 1]] + ans[i - 1][j];
-                }
-                else
-                {
-                    ans[i][j] = ans[i - 1][j];
-                }
+        
+        for(int i=1;i<=n;i++){
+            for(int j=0;j<=t;j++){
+                if(nums[i-1]<=j){
+                    dp[i][j] = dp[i-1][j-nums[i-1]] + dp[i-1][j];
+                } 
+                else{
+                    dp[i][j] = dp[i-1][j];
+                } 
             }
         }
-        return ans[n][t];
-    }
-
-    int findTargetSumWays(vector<int> &arr, int diff)
-    {
-        int n = arr.size();
-        int sum = accumulate(arr.begin(), arr.end(), 0);
-
-        int t = (diff + sum) / 2;
-
-        if (n == 0 || t > sum || (diff + sum) % 2 != 0)
-            return 0;
-
-        t = abs(t);
-
-        return subset_sum(arr, t);
+        
+        
+        
+        return dp[n][t];
     }
 };
