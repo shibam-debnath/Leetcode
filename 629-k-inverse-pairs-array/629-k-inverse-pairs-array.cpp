@@ -13,9 +13,8 @@ public:
         
         for(int i=1;i<=n;i++){
             for(int j=1;j<=k;j++){
-                if (j >= i) dp[i][j] = (((dp[i][j - 1]) + (dp[i - 1][j]) - (dp[i - 1][j - i]) + mod) % mod);
-                else dp[i][j] = ((dp[i][j - 1]) + (dp[i - 1][j])) % mod;
-                // cout << dp[i][j] << " ";
+                if    (j < i) dp[i][j] = ((dp[i][j - 1]) + (dp[i - 1][j])) % mod;
+                else  dp[i][j]         = (((dp[i][j - 1]) + (dp[i - 1][j]) - (dp[i - 1][j - i]) + mod) % mod);
             }
         }
         
