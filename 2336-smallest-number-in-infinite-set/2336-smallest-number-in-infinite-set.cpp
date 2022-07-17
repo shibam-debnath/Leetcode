@@ -1,26 +1,25 @@
 class SmallestInfiniteSet {
 public:
     
-    vector<int> v;
+    set<int> v;
+    int start=1;
     SmallestInfiniteSet() {
-        for(int i =1;i<1001;i++) v.push_back(i);
     }
     
     int popSmallest() {
-        sort(v.begin(),v.end());
-        auto it = v.begin();
-        int res=*it;
-        v.erase(it);
-        return res;
+        // if set has elements means there we have the smallest
+        if(v.size()>0){
+            int it = *v.begin();
+            v.erase(it);
+            return it;
+        }
+        int ret=start;
+        start++;
+        return ret;
     }
     
     void addBack(int num) {
-        auto it=v.begin();
-        it = find(v.begin(),v.end(),num);
-        // not found 
-        if(it==v.end()){
-            v.push_back(num);
-        }
+        if(num<start) v.insert(num);
     }
 };
 
