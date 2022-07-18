@@ -1,49 +1,37 @@
 class Solution
 {
 public:
-    vector<int> res;
+    
     vector<int> findBall(vector<vector<int>> &grid)
     {
         int n = grid.size();
         int m = grid[0].size();
+        vector<int> res;
         for (int i = 0; i < m; i++)
         {
-            dfs(grid, n, m, 0, i);
-            // res.push_back(i);
+            int ans = dfs(grid, n, m, 0, i);
+            res.push_back(ans);
         }
-        
         return res;
     }
 
-    void dfs(vector<vector<int>> &grid, int row, int col, int i, int j)
+    int dfs(vector<vector<int>> &grid, int row, int col, int i, int j)
     {
         // base
-        if (i >= row){
-            res.push_back(j);
-            return;
-        }
+        if (i >= row) return j;
             
-        // 3 dead locks
-        if (grid[i][j] == 1)
-        {
-            if (j == col-1 || grid[i][j + 1] == -1){
-                res.push_back(-1);
-                return;
-            }
-                
-        }
+        // 4 dead locks
+        
+        //left diagonal
+        if (grid[i][j] == 1) 
+            if (j == col-1 || grid[i][j + 1] == -1) return -1;
 
+        //right diagonal
         if (grid[i][j] == -1)
-        {
-            if (j == 0 || grid[i][j - 1] == 1){
-                res.push_back(-1);
-                return;
-            }
-                
-        }
+            if (j == 0 || grid[i][j - 1] == 1) return -1;
 
         // recursive call
-        dfs(grid, row, col, i + 1, j + grid[i][j]);
+        return dfs(grid, row, col, i + 1, j + grid[i][j]);
 
     }
 };
