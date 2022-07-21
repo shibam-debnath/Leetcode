@@ -1,13 +1,6 @@
 /**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+  DIVIDE AND CONQUER
+*/
 class Solution
 {
 public:
@@ -63,16 +56,11 @@ public:
         }
 
         // if only l exist just add it to the ptr
-        if (l)
-        {
-            ptr->next = l;
-        }
+        if (l) ptr->next = l;
 
         // if only nright exists
-        if (r)
-        {
-            ptr->next = r;
-        }
+        if (r) ptr->next = r;
+        
 
         return node->next;
     }
