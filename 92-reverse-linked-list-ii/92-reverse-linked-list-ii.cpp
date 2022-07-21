@@ -11,25 +11,31 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        ListNode *temp = head;
+        if(left==right) return head;
+        ListNode *temp = head,*sec=NULL,*fir=NULL;
         for(int i=0;i<left-1;i++){
+            fir=temp;
             temp=temp->next;
         }
         
-        stack<int> st;
+        sec=temp;
+        // cout << fir->val << " " << sec->val << endl;
         int dist = right-left;
-        ListNode *ptr = temp;
-        for(int i=0;i<=dist;i++){
-            st.push(ptr->val);
-            ptr=ptr->next;
+        ListNode *prev = temp , *curr=temp->next;
+        
+        while(curr && dist--){
+            temp=curr->next;
+            curr->next = prev;
+            prev=curr;
+            curr=temp;
         }
         
-        while(temp && !st.empty()){
-            int v = st.top();
-            st.pop();
-            temp->val = v;
-            temp=temp->next;
-        }
+        // main connection
+        sec->next = curr;
+        
+        if(left==1) return prev;
+        
+        fir->next = prev;
         
         return head;
     }
