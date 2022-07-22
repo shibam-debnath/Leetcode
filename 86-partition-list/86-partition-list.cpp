@@ -30,18 +30,11 @@ class Solution
                     evenn->next = new ListNode(head->val);
                     evenn = evenn->next;
                 }
+                
                 head = head->next;
             }
-
-            ListNode *temp = odd;
-
-            while (temp->next)
-            {
-                temp = temp->next;
-            }
-
-            temp->next = even->next;
-
+            evenn->next = NULL;
+            oddd->next = even->next;
             return odd->next;
         }
 };
