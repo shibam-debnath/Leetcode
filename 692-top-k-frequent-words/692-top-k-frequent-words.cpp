@@ -1,6 +1,6 @@
 class comp{
     public:
-    bool operator()(pair<int,string> a, pair<int,string> b) const{
+    bool operator()(const pair<int,string> a,const pair<int,string> b){
         if(a.first < b.first) return true;
         else if(a.first == b.first && a.second>b.second) return true;
         return false;
