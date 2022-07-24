@@ -1,23 +1,21 @@
 class Solution {
 public:
     int maximumSum(vector<int>& nums) {
-        int n=nums.size();
         unordered_map<int,vector<int>> mp;
         int res=0;
-        for( int i=0;i<n;i++){
-            int dig_sum = getSum(nums[i]);
-            mp[dig_sum].push_back(nums[i]);
+        for(auto &x : nums){
+            int sum = getSum(x);
+            mp[sum].push_back(x);
         }
-        
-        for(auto m=mp.begin();m!=mp.end();m++){
-            int size = mp[m->first].size();
-            if(size>1){
-                sort(mp[m->first].begin(),mp[m->first].end(),greater<int>());
-                res=max(res,mp[m->first][0]+mp[m->first][1]);
+        for(auto m : mp){
+            if(m.second.size()>1){
+                sort(m.second.begin(),m.second.end(),greater<int>());
+                res=max(res,m.second[0]+m.second[1]);
             }
         }
-        return res!=0?res:-1;
+        return res>0?res:-1;
     }
+    
     
     int getSum(int n)
     {
