@@ -1,31 +1,23 @@
 class Solution {
 public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        // to store each subsets
-        vector<int> subset;
-
-        // to store all subsets
-        vector<vector<int>> subsets_all;
-
-        combination_sum(subset,candidates, target,0, subsets_all);
-        return subsets_all;
+    vector<vector<int>> res;
+    vector<vector<int>> combinationSum(vector<int>& nums, int t) {
+        vector<int> row;
+        solve(nums,t,row,0);
+        return res;
     }
     
-    void combination_sum(vector<int> &subset, vector<int>& candidates, int t,int index, vector<vector<int>> &subsets_all)
-    {
+    void solve(vector<int>& nums, int t,vector<int> row, int start){
+        if(t==0) res.emplace_back(row);
         
-        if(t==0){
-            subsets_all.push_back(subset);
+        for(int i=start;i<nums.size();i++){
+            if(nums[i] <= t){
+                row.emplace_back(nums[i]);
+                solve(nums,t-nums[i],row,i);
+                row.pop_back();
+            }
         }
-
-
-        for (int i = index; i < candidates.size(); i++)
-        {
-            if(candidates[i] > t) continue;
-            
-            subset.push_back(candidates[i]);
-            combination_sum(subset,candidates, t-candidates[i],i, subsets_all);
-            subset.pop_back();
-        }
+        
+        return;
     }
 };
