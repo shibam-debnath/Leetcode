@@ -2,39 +2,31 @@ class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int target) {
         int sum = accumulate(nums.begin(),nums.end(),0);
-        int Subset_sum_target = (target+sum)/2;
+        int t = (target+sum)/2;
         
-        if (Subset_sum_target > sum || (target+sum)%2 != 0) return 0;
+        if (t > sum || (target+sum)%2 != 0) return 0;
+        t=abs(t);
         
-        Subset_sum_target=abs(Subset_sum_target);
-        
-        return subset_sum(nums,Subset_sum_target);
+        int n=nums.size();
+        vector<vector<int>> dp(n+1,vector<int>(t+1,-1)); 
+        return subset_sum(dp,nums,n,t);
     }
     
-    int subset_sum(vector<int>& nums, int t){
-        int n = nums.size();
-
-        // Dp matrix
-        int dp[n + 1][t + 1];
-
-
-        for (int i = 0; i <= t; i++) dp[0][i] = 0;
-        for (int i = 0; i <= n; i++) dp[i][0] = 1;
-
+    int subset_sum(vector<vector<int>> &dp, vector<int>& nums,int n, int t){
         
-        for(int i=1;i<=n;i++){
-            for(int j=0;j<=t;j++){
-                if(nums[i-1]<=j){
-                    dp[i][j] = dp[i-1][j-nums[i-1]] + dp[i-1][j];
-                } 
-                else{
-                    dp[i][j] = dp[i-1][j];
-                } 
-            }
+        if (n == 0){
+            if(t==0) return 1;
+            return 0;
         }
         
+        if(dp[n][t]!=-1) return dp[n][t];
         
+        if(nums[n-1]<= t){
+            return dp[n][t] = subset_sum(dp,nums,n-1,t-nums[n-1]) + subset_sum(dp,nums,n-1,t);
+        }
+        else{
+            return subset_sum(dp,nums,n-1,t);    
+        }
         
-        return dp[n][t];
     }
 };
