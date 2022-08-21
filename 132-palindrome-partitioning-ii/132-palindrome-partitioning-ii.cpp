@@ -8,43 +8,32 @@ public:
         int N = s.size();
         // initialisation with -1
         dp.resize(N + 1, vector<int>(N + 1, -1));
-
         return MCM(s, 0, N - 1);
     }
 
     int MCM(string &s, int i, int j)
     {
         // base case
-        if (i >= j)
-        {
-            return 0;
-        }
+        if (i >= j) return 0;
 
-        if (dp[i][j] != -1)
-        {
-            return dp[i][j];
-        }
+        if (dp[i][j] != -1) return dp[i][j];
 
         // ! new addition
-        if (palindrome(s, i, j))
-        {
-            return 0; // since no need to partition
-        }
+        if (palindrome(s, i, j)) return 0; // since no need to partition
 
         int mini = INT_MAX;
 
-        int left = 0, right = 0;
+        int total_partition = 0;
 
         // recursive call where we move k from i ton j-1
         for (int k = i; k < j; k++)
         {
             // This method is giving us tle so we need to further optimise
             // int temp_ans = MCM(s, i, k) + MCM(s, k + 1, j) + 1;
-
             if (palindrome(s, i, k))
             {
                 // check the right side if and only if left is a palindrome else return 0
-                right = MCM(s, k + 1, j);
+                total_partition = 1 + MCM(s, k + 1, j);
             }
             else
             {
@@ -52,9 +41,7 @@ public:
                 continue;
             }
 
-            int temp_ans = right + 1;
-
-            mini = min(mini, temp_ans);
+            mini = min(mini, total_partition);
         }
 
         return dp[i][j] = mini;
