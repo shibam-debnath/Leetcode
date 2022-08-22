@@ -15,7 +15,7 @@ public:
     {
         int n = nums.size();
 
-        // initialize with 1 because we can always t5ake curr element 
+        // initialize with 1 because we can always t5ake curr element
         vector<int> dp(n, 1);
 
         int ans = 1;
@@ -28,7 +28,7 @@ public:
                 if (nums[j] < nums[i])
                 {
                     //       lena k baad(main dp)    nehi lene k baad
-                    dp[i] = max(   1 + dp[j],          dp[i]);
+                    dp[i] = max(1 + dp[j], dp[i]);
 
                     ans = max(ans, dp[i]);
                 }

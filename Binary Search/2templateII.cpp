@@ -13,7 +13,7 @@ using namespace std;
 // ### Use the element's right neighbor to determine if the condition is met
 //     and decide whether to go left or right
 // ### Guarantees Search Space is at least 2 in size at each step
-// ### Post-processing required. Loop/Recursion ends when you have 1 element left. 
+// ### Post-processing required. Loop/Recursion ends when you have 1 element left.
 //     Need to assess if the remaining element meets the condition.
 
 int binarySearch(vector<int> &nums, int target)
@@ -52,3 +52,4 @@ int main()
     // Main function goes here
     return 0;
 }
+
