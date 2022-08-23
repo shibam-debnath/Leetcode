@@ -13,35 +13,30 @@ public:
     bool isPalindrome(ListNode* head) {
         ListNode *slow =head , *fast = head;
         
-        while(fast && fast->next){
+        while(fast->next && fast->next->next){
             slow = slow->next;
             fast=fast->next->next;
         }
         
         // reverse 2nd half
+        ListNode *rev = slow->next;
+        slow->next = NULL;
         
-        ListNode *rev=slow;
-        slow=slow->next;
-        
-        // this cuts the second half end to NULL
-        rev->next=NULL;
-        
-        // reverse 2nd half
-        ListNode *temp = slow;
-        while(slow){
-            temp=slow->next;
-            slow->next = rev;
-            rev=slow;
-            slow=temp;
-        }
-
-        slow = head;
-        
+        // reverse rev
+        ListNode *prev = NULL , *temp = rev;
         while(rev){
-            cout << rev->val << " " << slow->val << endl;
-            if(rev->val != slow->val) return false;
-            rev=rev->next;
-            slow=slow->next;
+            temp = rev->next;
+            rev->next = prev;
+            prev = rev;
+            rev = temp;
+        }
+        
+        // now our reversed wala is prev
+        rev = prev;
+        while(rev){
+            if(rev->val != head->val) return false;
+            rev = rev->next;
+            head= head->next;
         }
         
         return true;
