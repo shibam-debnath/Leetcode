@@ -12,37 +12,39 @@ public:
         for(int i=0;i<n;i++){
             
             if(vis[i]) continue;
+            if(bfs(graph,vis,i)== false) return false;
+        
+        }
             
-            queue<int> q;
-            q.push(i);
-            vis[i] = 1; // colored red
+        return true;    
+            
+    }
+    
+    bool bfs(vector<vector<int>>& graph,vector<int> vis,int i){
+        
+        queue<int> q;
+        q.push(i);
+        vis[i] = 1; // colored red
 
-            while(!q.empty()){
-                int size = q.size();
-                while(size--){
+        while(!q.empty()){
+            
+            auto par = q.front();
+            q.pop();
 
-                    auto par = q.front();
-                    q.pop();
+            for(auto ch : graph[par]){
 
-                    for(auto ch : graph[par]){
-
-                        // already colored
-                        if(vis[ch]!= 0){
-                            if(vis[ch] == vis[par]) return false;
-                        }
-                        else{
-                            q.push(ch);
-                            vis[ch] = -vis[par];  // if par == 1 it becomes ch == 1 and vice versa
-                        }
-                    }
+                // already colored
+                if(vis[ch]!= 0){
+                    if(vis[ch] == vis[par]) return false;
+                }
+                else{
+                    q.push(ch);
+                    vis[ch] = -vis[par];  // if par == 1 it becomes ch == 1 and vice versa
                 }
             }
             
         }
-        
         return true;
     }
-    
-    
 
 };
