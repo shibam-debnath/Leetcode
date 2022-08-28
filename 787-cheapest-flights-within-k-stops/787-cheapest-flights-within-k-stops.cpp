@@ -23,9 +23,8 @@ public:
                 pq.pop();
                 
                 if(node==dst) return cost;
-                if(stops>k) continue;
             
-                if(dist[node]!=INT_MAX and dist[node]<stops) continue;
+                if(dist[node]<stops or stops>k) continue;
                 dist[node] = stops; 
                 
                 for(auto &ch : G[node]){
