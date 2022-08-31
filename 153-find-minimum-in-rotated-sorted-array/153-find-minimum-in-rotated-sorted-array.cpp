@@ -9,24 +9,17 @@ public:
             return nums[0];
             
         int left = 0, right = n - 1, mid = 0;
-        // whenever we find nums[l] < nums[r] then always nums[l] is the min val !try it in copy
-        while (left < right)
-        {
-            mid = left + (right - left) / 2;
-
-            if (nums[left] < nums[right])
-            {
-                // we found the sorted search space
-                return nums[left];
-            }
+        while(left<=right){
+            mid=(right+left)/2;
             
-            // if nums[mid] >= nums[left] that means left->mid is in right form so go to right for our ans
-            if (nums[mid]>=nums[left]) {
-                left = mid+1;
-            } else {
+            if(nums[mid]<nums[right]){
+                // left side doesn't contain the rotated part
                 right = mid;
             }
+            else{
+                left = mid+1;
+            }
         }
-        return nums[left];
+        return nums[mid];
     }
 };
