@@ -23,7 +23,7 @@ public:
         return low;
     }
     
-    int get_sum(int d,vector<int> arr,int t){
+    int get_sum(int d,vector<int>& arr,int t){
         int sum = 0;
         for(int i = 0; i < arr.size(); i++) {
             sum += min(arr[i], d);
