@@ -14,14 +14,13 @@ public:
             bool possible = check(mid,bloomDay,m,k);
             if(possible){
                 // it can be a ans but try with smaller speed since we want min val of k
-                temp_ans = mid;
                 r = mid-1;
             }
             else{
                 l=mid+1;
             }
         }
-        return temp_ans;
+        return l;
     }
     
     bool check(int day,vector<int>&bloomDay,int m,int k){
