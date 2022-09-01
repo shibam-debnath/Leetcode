@@ -12,21 +12,20 @@
 class Solution {
 public:
     int findBottomLeftValue(TreeNode* root) {
-        queue<TreeNode *> q;
-        q.push(root);
-        int ans=-1;
-        while(q.size()){
-            
-            int size = q.size();
-            ans= q.front()->val;
-            while(size--){
-                auto curr = q.front();
-                q.pop();
-                if(curr->left) q.push(curr->left);
-                if(curr->right) q.push(curr->right);
-            }
+        int res=root->val;
+        int m_depth = 0;
+        dfs(root,res,m_depth,0);
+        return res;
+    }
+    void dfs(TreeNode *root,int &res,int &max_d,int depth){
+        if(!root) return;
+        
+        dfs(root->left,res,max_d,depth+1);
+        dfs(root->right,res,max_d,depth+1);
+        
+        if(depth>max_d){
+            max_d = depth;
+            res=root->val;
         }
-
-        return  ans;
     }
 };
