@@ -17,7 +17,7 @@ public:
         return l;
     }
 
-    int get_sum(int d, vector<int> nums, int t)
+    int get_sum(int d, vector<int>& nums, int t)
     {
         int sum = 0;
         for(int i=0;i<nums.size();i++){
