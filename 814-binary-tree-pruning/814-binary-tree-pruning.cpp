@@ -13,7 +13,10 @@ class Solution {
 public:
     TreeNode* pruneTree(TreeNode* root) {
         helper(root);
-        if(!root or (isLeaf(root) and root->val==0)) return NULL;
+        
+        // after deleting nodes from bottom check if root can be removed or not
+        if(isLeaf(root) and root->val==0) return NULL;
+        
         return root;
     }
     
@@ -21,9 +24,11 @@ public:
         
         if(!root) return;
         
+        // start from bottom 
         helper(root->left);
         helper(root->right);
         
+        // if node is leaf and has val == 0 then remove it
         if(root->left and isLeaf(root->left) and root->left->val == 0){
             root->left = NULL;
         }
