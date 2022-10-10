@@ -48,7 +48,7 @@ public:
         {
             if (candidates[i] > t)
                 continue;
-            if (i != 0 && candidates[i] == candidates[i - 1] && i > index)
+            if (i != index && candidates[i] == candidates[i - 1])
                 continue; //! this trick (IMPORTANT)
 
             subset.push_back(candidates[i]);

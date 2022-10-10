@@ -63,3 +63,53 @@ int main()
     // Main function goes here
     return 0;
 }
+
+class Solution
+{
+public:
+    vector<int> sumEvenAfterQueries(vector<int> &nums, vector<vector<int>> &queries)
+    {
+        int sum = 0;
+        for (auto &x : nums)
+        {
+            if (x % 2 == 0)
+                sum += x;
+        }
+        vector<int> res;
+        for (auto &x : queries)
+        {
+            int val = x[0];
+            int idx = x[1];
+
+            // even
+            if ((nums[idx] % 2) == 0)
+            {
+                if ((val % 2) == 0)
+                {
+                    nums[idx] += val;
+                    sum += val;
+                }
+                else
+                {
+                    nums[idx] += val;
+                    sum -= nums[idx];
+                }
+            }
+            // odd
+            else
+            {
+                if (val % 2 != 0)
+                {
+                    nums[idx] += val;
+                    sum += nums[idx];
+                }
+                else
+                {
+                    nums[idx] += val;
+                }
+            }
+            res.push_back(sum);
+        }
+        return res;
+    }
+};
